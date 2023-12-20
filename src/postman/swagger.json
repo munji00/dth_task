@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "156850d4-5493-4570-aad1-a66533012f77",
+		"name": "dth_clone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27687325"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "operator signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"username\":\"operator\",\n    \"name\":\"oprator\",\n    \"email\":\"operator@gmail.com\",\n    \"password\":\"12345\",\n    \"role\":2,\n    \"active\":false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:6007/api/v1/user/auth/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "admin signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"admin\",\n    \"name\":\"admin\",\n    \"email\":\"admin@gmail.com\",\n    \"password\":\"12345\",\n    \"role\":1,\n    \"active\":false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:6007/api/v1/user/auth/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "user signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"john_doe\",\n    \"name\":\"john_doe\",\n    \"email\":\"john@gmail.com\",\n    \"password\":\"12345\",\n    \"role\":\"0\",\n    \"active\":false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:6007/api/v1/user/auth/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "operator signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"admin@gmail.com\",\n    \"password\":\"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:6007/api/v1/user/auth/signin"
+					},
+					"response": []
+				},
+				{
+					"name": "get single user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjM1Mzd9.8B3zY33DlhrI_3T5ou9Z9kTZHdDDqWSd4mhw_vwLAMg"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:6007/api/v1/user/get/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get all user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjM1Mzd9.8B3zY33DlhrI_3T5ou9Z9kTZHdDDqWSd4mhw_vwLAMg"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:6007/api/v1/user/get-all"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "package",
+			"item": [
+				{
+					"name": "create pack",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9wZXJhdG9yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjQ2NDN9.Nc6fU0P6-xl3YPPZdCWFx2qTgmh-Mu1jh_gxufWnD8M"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"combo pack\",\n    \"category\":\"sport\",\n    \"duration\": \"1 year\",\n    \"price\":299\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:6007/api/v1/package/create"
+					},
+					"response": []
+				},
+				{
+					"name": "get pack",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9wZXJhdG9yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjQ2NDN9.Nc6fU0P6-xl3YPPZdCWFx2qTgmh-Mu1jh_gxufWnD8M"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:6007/api/v1/package/get/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get all pack",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9wZXJhdG9yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjQ2NDN9.Nc6fU0P6-xl3YPPZdCWFx2qTgmh-Mu1jh_gxufWnD8M"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:6007/api/v1/package/get-all"
+					},
+					"response": []
+				},
+				{
+					"name": "delete pack",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9wZXJhdG9yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjQ2NDN9.Nc6fU0P6-xl3YPPZdCWFx2qTgmh-Mu1jh_gxufWnD8M"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:6007/api/v1/package/delete/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "channel",
+			"item": [
+				{
+					"name": "create channel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9wZXJhdG9yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjQ2NDN9.Nc6fU0P6-xl3YPPZdCWFx2qTgmh-Mu1jh_gxufWnD8M"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"DD Sport\",\n    \"category\":\"sport\",\n    \"description\":\"oldest sport channel in india\",\n    \"pack\":2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:6007/api/v1/channel/create"
+					},
+					"response": []
+				},
+				{
+					"name": "get channel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9wZXJhdG9yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjQ2NDN9.Nc6fU0P6-xl3YPPZdCWFx2qTgmh-Mu1jh_gxufWnD8M"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:6007/api/v1/channel/get/3"
+					},
+					"response": []
+				},
+				{
+					"name": "get all channelt",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9wZXJhdG9yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjQ2NDN9.Nc6fU0P6-xl3YPPZdCWFx2qTgmh-Mu1jh_gxufWnD8M"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:6007/api/v1/channel/get-all"
+					},
+					"response": []
+				},
+				{
+					"name": "delete channel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9wZXJhdG9yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjQ2NDN9.Nc6fU0P6-xl3YPPZdCWFx2qTgmh-Mu1jh_gxufWnD8M"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:6007/api/v1/channel/delete/3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subscription",
+			"item": [
+				{
+					"name": "subscribe pack",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9wZXJhdG9yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjQ2NDN9.Nc6fU0P6-xl3YPPZdCWFx2qTgmh-Mu1jh_gxufWnD8M"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:6007/api/v1/subscription/subscribe/2"
+					},
+					"response": []
+				},
+				{
+					"name": "fetch subscription",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9wZXJhdG9yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjQ2NDN9.Nc6fU0P6-xl3YPPZdCWFx2qTgmh-Mu1jh_gxufWnD8M"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:6007/api/v1/subscription/get/3"
+					},
+					"response": []
+				},
+				{
+					"name": "unsubscribe pack",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9wZXJhdG9yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE3MDMwNjQ2NDN9.Nc6fU0P6-xl3YPPZdCWFx2qTgmh-Mu1jh_gxufWnD8M"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:6007/api/v1/subscription/delete/3"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
