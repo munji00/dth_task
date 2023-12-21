@@ -1,0 +1,474 @@
+openapi: 3.0.0
+info:
+  title: dth_clone
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:6007/api/v1
+  variables: {}
+paths:
+  /user/auth/signup:
+    post:
+      tags:
+      - user
+      summary: operator signup
+      operationId: operatorsignup
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/operatorsignuprequest'
+              - example:
+                  username: operator
+                  name: oprator
+                  email: operator@gmail.com
+                  password: '12345'
+                  role: 2
+                  active: false
+            example:
+              username: operator
+              name: oprator
+              email: operator@gmail.com
+              password: '12345'
+              role: 2
+              active: false
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /user/auth/signin:
+    post:
+      tags:
+      - user
+      summary: operator signin
+      operationId: operatorsignin
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/operatorsigninrequest'
+              - example:
+                  email: admin@gmail.com
+                  password: '12345'
+            example:
+              email: admin@gmail.com
+              password: '12345'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /user/get/1:
+    get:
+      tags:
+      - user
+      summary: get single user
+      operationId: getsingleuser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /user/get-all:
+    get:
+      tags:
+      - user
+      summary: get all user
+      operationId: getalluser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /package/create:
+    post:
+      tags:
+      - package
+      summary: create pack
+      operationId: createpack
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createpackrequest'
+              - example:
+                  name: combo pack
+                  category: sport
+                  duration: 1 year
+                  price: 299
+            example:
+              name: combo pack
+              category: sport
+              duration: 1 year
+              price: 299
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /package/get/1:
+    get:
+      tags:
+      - package
+      summary: get pack
+      operationId: getpack
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /package/get-all:
+    get:
+      tags:
+      - package
+      summary: get all pack
+      operationId: getallpack
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /package/delete/1:
+    delete:
+      tags:
+      - package
+      summary: delete pack
+      operationId: deletepack
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /channel/create:
+    post:
+      tags:
+      - channel
+      summary: create channel
+      operationId: createchannel
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createchannelrequest'
+              - example:
+                  name: DD Sport
+                  category: sport
+                  description: oldest sport channel in india
+                  pack: 2
+            example:
+              name: DD Sport
+              category: sport
+              description: oldest sport channel in india
+              pack: 2
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /channel/get/3:
+    get:
+      tags:
+      - channel
+      summary: get channel
+      operationId: getchannel
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /channel/get-all:
+    get:
+      tags:
+      - channel
+      summary: get all channelt
+      operationId: getallchannelt
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /channel/delete/3:
+    delete:
+      tags:
+      - channel
+      summary: delete channel
+      operationId: deletechannel
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /subscription/subscribe/2:
+    post:
+      tags:
+      - subscription
+      summary: subscribe pack
+      operationId: subscribepack
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/subscribepackrequest'
+              - example:
+                  user_id: 2
+            example:
+              user_id: 2
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /subscription/get/3:
+    get:
+      tags:
+      - subscription
+      summary: fetch subscription
+      operationId: fetchsubscription
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /subscription/delete/3:
+    delete:
+      tags:
+      - subscription
+      summary: unsubscribe pack
+      operationId: unsubscribepack
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    operatorsignuprequest:
+      title: operatorsignuprequest
+      required:
+      - username
+      - name
+      - email
+      - password
+      - role
+      - active
+      type: object
+      properties:
+        username:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          type: integer
+          format: int32
+        active:
+          type: boolean
+      example:
+        username: operator
+        name: oprator
+        email: operator@gmail.com
+        password: '12345'
+        role: 2
+        active: false
+    adminsignuprequest:
+      title: adminsignuprequest
+      required:
+      - username
+      - name
+      - email
+      - password
+      - role
+      - active
+      type: object
+      properties:
+        username:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          type: integer
+          format: int32
+        active:
+          type: boolean
+      example:
+        username: admin
+        name: admin
+        email: admin@gmail.com
+        password: '12345'
+        role: 1
+        active: false
+    usersignuprequest:
+      title: usersignuprequest
+      required:
+      - username
+      - name
+      - email
+      - password
+      - role
+      - active
+      type: object
+      properties:
+        username:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+        active:
+          type: boolean
+      example:
+        username: john_doe
+        name: john_doe
+        email: john@gmail.com
+        password: '12345'
+        role: '0'
+        active: false
+    operatorsigninrequest:
+      title: operatorsigninrequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: admin@gmail.com
+        password: '12345'
+    createpackrequest:
+      title: createpackrequest
+      required:
+      - name
+      - category
+      - duration
+      - price
+      type: object
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        duration:
+          type: string
+        price:
+          type: integer
+          format: int32
+      example:
+        name: combo pack
+        category: sport
+        duration: 1 year
+        price: 299
+    createchannelrequest:
+      title: createchannelrequest
+      required:
+      - name
+      - category
+      - description
+      - pack
+      type: object
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        pack:
+          type: integer
+          format: int32
+      example:
+        name: DD Sport
+        category: sport
+        description: oldest sport channel in india
+        pack: 2
+    subscribepackrequest:
+      title: subscribepackrequest
+      required:
+      - user_id
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int32
+      example:
+        user_id: 2
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: user
+- name: package
+- name: channel
+- name: subscription
