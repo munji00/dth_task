@@ -1,6 +1,6 @@
 import swaggerUi from 'swagger-ui-express'
 import express from 'express';
-import * as swaggerDocuments from "./postman/swagger.json"
+import YAML from 'yamljs'
 import { AppDataSource } from './data-source';
 import userRoutes from './routes/userRoutes';
 import cors from 'cors'
@@ -8,8 +8,7 @@ import channelRoutes from './routes/channelRoutes';
 import packageRoutes from './routes/packageRoutes';
 import subscriptionRoutes from './routes/subscriptionRoutes';
 import { credentials } from './constants';
-import { errorHandler } from './errorHandlers/globalErrHandler';
-import { swaggerSetup } from './configrations/swaggerConfig';
+import { errorHandler } from './errorHandlers/globalErrHandler'
 
 
 export const app = express();
@@ -20,7 +19,9 @@ app.use(express.json());
 
 
 //swaggerSetup();
-app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocuments));
+const swaggerDocs = YAML.load('src/swagger/api_definition.yaml');
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 
 //connection to database 
 AppDataSource.initialize().then(()=> {
