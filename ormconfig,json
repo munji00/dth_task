@@ -1,9 +1,0 @@
-{
-    "type":"mysql2",
-    "host":"localhost",
-    "username":"siddiqui",
-    "password":"@Mu786Mu@",
-    "database":"dth_clone",
-    "synchronize":true,
-    "entities":["src/entities/*.ts"]
-}
