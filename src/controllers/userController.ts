@@ -9,7 +9,6 @@ export const registerUser = async (req: Request, res: Response, next:NextFunctio
     const newUser = await userServices.registerUser(userData);
     res.status(201).send({success:true , message:"user register successfully",newUser});
   } catch (error) {
-    //res.status(500).send({success:false, message: error});
     next(error)
   }
 }
@@ -21,7 +20,6 @@ export const loginUser = async(req:Request, res:Response, next:NextFunction):Pro
     res.status(200).send({success:true, message:"Login Successfully"})
    } catch (error) {
     console.log(error)
-    //res.status(500).send({success:false, message:"Internal Server Error"})
     next();
    }
 }
@@ -33,7 +31,6 @@ export const getSingleUser = async(req:Request, res:Response, next:NextFunction)
     const userData = await userServices.getUserById(+id)
     res.status(200).send({success:true, message:"user found successfully", data:userData})
   } catch (error) {
-    //res.status(500).send({success:false, message:"Internal Server Error"})
     next(error)
   }
 }
@@ -45,7 +42,6 @@ export const getAllUsers = async(req:Request, res:Response, next:NextFunction):P
     res.status(200).send({success:true ,AllUsersData:usersData})
   } catch (error) {
     console.log(error);
-    //res.status(500).send({success:false, message:"Internal Server Error"})
     next(error)
   }
 }
@@ -57,7 +53,6 @@ export const deleteUser = async(req:Request, res:Response, next:NextFunction):Pr
     await userServices.deleteUser(+id);
     res.status(200).send({success:true ,message:"User deleted successfully"})
   } catch (error) {
-    //res.status(500).send({success:false, message:"Internal Server Error"})
     next(error)
   }
 }

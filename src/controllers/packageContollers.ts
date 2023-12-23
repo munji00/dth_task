@@ -9,7 +9,6 @@ export const createPackage = async (req: Request, res: Response, next:NextFuncti
     const newPack = await packageServices.createPack(packData);
     res.status(201).send({success:true , message:"New Pack Created Successfully",newPack});
   } catch (error) {
-    //res.status(500).send({success:false, message: error});
     next(error);
   }
 }
@@ -23,7 +22,6 @@ export const getPackage = async(req:Request, res:Response, next:NextFunction):Pr
     const packData = await packageServices.getPack(+id)
     res.status(200).send({success:true, data:packData})
   } catch (error) {
-    //res.status(500).send({success:false, message:"Internal Server Error"})
     next()
   }
 }
@@ -36,7 +34,6 @@ export const getAllPackages = async(req:Request, res:Response, next:NextFunction
     const pakesData = await packageServices.getPackes();
     res.status(200).send({success:true ,data:pakesData})
   } catch (error) {
-    //res.status(500).send({success:false, message:"Internal Server Error"})
     next(error)
   }
 }
@@ -48,7 +45,6 @@ export const deletePackage = async(req:Request, res:Response, next:NextFunction)
     await packageServices.deletePackage(+id);
     res.status(200).send({success:true, message:"Package deleted successfully"})
   } catch (error) {
-    //res.status(500).send({success:false, message:"Internal Server Error"})
     next(error)
   }
 }
