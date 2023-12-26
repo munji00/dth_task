@@ -17,6 +17,7 @@ export const GET_SINGLE_USER = {
     } 
 }
 
+
 export const GET_ALL_USER = {
     type: new GraphQLList(userType),
 

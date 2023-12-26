@@ -28,6 +28,6 @@ export const DELETE_CHANNEL = {
 
    async resolve(parents:any ,args:Channel){
         await channelServices.deleteChannel(args.id)
-        return "user deleted successfully"
+        return "channel deleted successfully"
     }
 }
