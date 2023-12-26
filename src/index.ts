@@ -2,6 +2,7 @@ import swaggerUi from 'swagger-ui-express'
 import express from 'express';
 import YAML from 'yamljs'
 import { AppDataSource } from './data-source';
+import { graphqlHTTP } from 'express-graphql';
 import userRoutes from './routes/userRoutes';
 import cors from 'cors'
 import channelRoutes from './routes/channelRoutes';
@@ -9,6 +10,8 @@ import packageRoutes from './routes/packageRoutes';
 import subscriptionRoutes from './routes/subscriptionRoutes';
 import { credentials } from './constants';
 import { errorHandler } from './errorHandlers/globalErrHandler'
+import {contextObject} from './graphql/context'
+import { schema } from './graphql/schema';
 
 
 export const app = express();
@@ -38,10 +41,13 @@ AppDataSource.initialize().then(()=> {
 app.use(errorHandler)
 
 
+
 //routes
 app.use("/api/v1/user", userRoutes)
 app.use("/api/v1/package", packageRoutes)
 app.use("/api/v1/channel", channelRoutes)
 app.use("/api/v1/subscription", subscriptionRoutes);
 
+//graphql server setup
+app.use('/graphql' , graphqlHTTP({schema,context:contextObject, graphiql:true}))
 

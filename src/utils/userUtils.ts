@@ -12,9 +12,9 @@ export const userUtils = {
          return await jwt.sign(payload, secret_key)
     },
 
-    async verifyToken(accessToken:string | undefined) {
+    async verifyToken(accessToken:string | undefined):Promise<jsonPayload>{
         const payload = await jwt.verify(accessToken as string, secret_key)
-        return payload;
+        return payload as jsonPayload;
     },
 
     async hashPassword( plainPassword:string | undefined){
