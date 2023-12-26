@@ -2,6 +2,7 @@ import {GraphQLInt, GraphQLString, GraphQLList } from "graphql";
 import { subscribeServices } from "../../services/subscriptionServices";
 import {User_Plan} from "../../entities/User_Plan.entity"
 import { planType } from "../TypeDefs/User_Plan";
+import { permissions } from "../../interfaces.td";
 
 
 export const SUBSCRIBE_PACK = {
@@ -13,8 +14,12 @@ export const SUBSCRIBE_PACK = {
         packageId:{type:GraphQLInt}
     },
 
-    async resolve(parent:any ,args:User_Plan){
-       return await subscribeServices.subscribePack(args)
+    async resolve(parent:any ,args:User_Plan, context:permissions){
+
+        if(context.isLogedin)
+         return await subscribeServices.subscribePack(args)
+
+        return {}
     }
 }
 

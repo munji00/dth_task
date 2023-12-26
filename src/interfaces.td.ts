@@ -5,3 +5,8 @@ export interface jsonPayload{
       email:string,
       password:string
 }
+
+export interface permissions{
+      isLogedin:boolean,
+      role:number
+}

@@ -10,6 +10,7 @@ import packageRoutes from './routes/packageRoutes';
 import subscriptionRoutes from './routes/subscriptionRoutes';
 import { credentials } from './constants';
 import { errorHandler } from './errorHandlers/globalErrHandler'
+import {contextObject} from './graphql/context'
 import { schema } from './graphql/schema';
 
 
@@ -48,5 +49,5 @@ app.use("/api/v1/channel", channelRoutes)
 app.use("/api/v1/subscription", subscriptionRoutes);
 
 //graphql server setup
-app.use('/graphql' , graphqlHTTP({schema, graphiql:true}))
+app.use('/graphql' , graphqlHTTP({schema,context:contextObject, graphiql:true}))
 
