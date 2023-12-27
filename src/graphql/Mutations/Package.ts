@@ -2,7 +2,7 @@ import {GraphQLInt, GraphQLString, GraphQLList } from "graphql";
 import { packageServices } from "../../services/packageServices";
 import {Package} from "../../entities/Package.entity"
 import { packageType } from "../TypeDefs/Package";
-import { permissions } from "../../interfaces.td";
+import { Permissions } from "../../interfaces.td";
 
 
 export const CREATE_PACKAGE = {
@@ -14,8 +14,8 @@ export const CREATE_PACKAGE = {
         price:{type:GraphQLInt}
     },
 
-    async resolve(parent:any ,args:Package, context:permissions){
-        if(context.isLogedin && context.role===2)
+    async resolve(parent:any ,args:Package, context:Permissions){
+        if(context.isLoggedIn && context.role===2)
         return await packageServices.createPack(args)
 
         return []
@@ -27,8 +27,8 @@ type:GraphQLString,
 args:{
     id:{type:GraphQLInt}
 },
-async resolve(parent:any , args:Package, context:permissions){
-    if(context.isLogedin && context.role===2)
+async resolve(parent:any , args:Package, context:Permissions){
+    if(context.isLoggedIn && context.role===2)
     {
         await packageServices.deletePackage(args.id)
         return "package deleted successfully"

@@ -22,7 +22,6 @@ export const loginMiddleware = async(req:Request, res:Response, next:NextFunctio
 export const registerMiddleware = async(req:Request, res:Response, next:NextFunction) => {
   try {
     const user = await userServices.getUserByEmail(req.body.email)
-    console.log(user)
 
     if(user)
       return res.status(403).send("user already exists with this email")
@@ -51,7 +50,6 @@ export const isLogedIn = async(req:Request, res:Response, next:NextFunction) => 
 export const isAdmin = async(req:Request, res:Response, next:NextFunction) => {
   const payload = req.body.payload;
   const userData= await userServices.getUserByEmail(payload.email);
-  console.log(userData)
 
   if(userData && userData.role === 1) return next()
 

@@ -3,7 +3,7 @@ import { userServices } from "../../services/userServices";
 import {userUtils} from '../../utils/userUtils'
 import { User} from "../../entities/User.entity"
 import { userType } from "../TypeDefs/User";
-import { permissions } from "../../interfaces.td";
+import { Permissions } from "../../interfaces.td";
 
 
 
@@ -39,8 +39,8 @@ export const DELETE_USER = {
         id:{type:GraphQLInt}
     },
 
-   async resolve(parents:any ,args:User, context:permissions){
-     if(context.isLogedin && context.role===1)
+   async resolve(parents:any ,args:User, context:Permissions){
+     if(context.isLoggedIn && context.role===1)
      {
        await userServices.deleteUser(args.id)
        return "user deleted successfully"

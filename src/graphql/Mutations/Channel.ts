@@ -2,7 +2,7 @@ import { GraphQLInt, GraphQLString } from "graphql";
 import { channelServices } from "../../services/channelServices";
 import {Channel} from "../../entities/Channel.entity"
 import { channelType } from "../TypeDefs/Channel";
-import { permissions } from "../../interfaces.td";
+import { Permissions } from "../../interfaces.td";
 
 
 
@@ -16,9 +16,9 @@ export const CREATE_CHANNEL = {
         pack:{type:GraphQLInt},
     },
 
-    async resolve(parent:any ,args:Channel, context:permissions){
+    async resolve(parent:any ,args:Channel, context:Permissions){
 
-        if(context.role ===2)
+        if(context.isLoggedIn && context.role ===2)
         return await channelServices.createChannel(args)
 
         return []
@@ -31,9 +31,9 @@ export const DELETE_CHANNEL = {
         id:{type:GraphQLInt}
     },
 
-   async resolve(parents:any ,args:Channel, context:permissions){
+   async resolve(parents:any ,args:Channel, context:Permissions){
 
-       if(context.role === 2 && context.isLogedin)
+       if(context.role === 2 && context.isLoggedIn)
        {
         await channelServices.deleteChannel(args.id)
         return "channel deleted successfully"

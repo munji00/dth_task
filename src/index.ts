@@ -49,5 +49,10 @@ app.use("/api/v1/channel", channelRoutes)
 app.use("/api/v1/subscription", subscriptionRoutes);
 
 //graphql server setup
-app.use('/graphql' , graphqlHTTP({schema,context:contextObject, graphiql:true}))
+app.use('/graphql', graphqlHTTP(async (req: any) => ({
+  schema,
+  context: await contextObject(req),
+  graphiql: true,
+})));
+
 

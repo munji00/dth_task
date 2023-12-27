@@ -6,7 +6,7 @@ export interface jsonPayload{
       password:string
 }
 
-export interface permissions{
-      isLogedin:boolean,
-      role:number
+export interface Permissions{
+      isLoggedIn:boolean,
+      role:number | undefined
 }
