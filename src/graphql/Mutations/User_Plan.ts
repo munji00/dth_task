@@ -3,10 +3,11 @@ import { subscribeServices } from "../../services/subscriptionServices";
 import {User_Plan} from "../../entities/User_Plan.entity"
 import { planType } from "../TypeDefs/User_Plan";
 import { Permissions } from "../../interfaces.td";
+import { resMessage } from "../../constants";
 
 
 export const SUBSCRIBE_PACK = {
-    type:planType,
+    type:GraphQLString,
 
     args:{
         st_date:{type:GraphQLString},
@@ -17,9 +18,12 @@ export const SUBSCRIBE_PACK = {
     async resolve(parent:any ,args:User_Plan, context:Permissions){
 
         if(context.isLoggedIn)
-         return await subscribeServices.subscribePack(args)
+        {
+            await subscribeServices.subscribePack(args)
+            return "you subscribed new pack"
+        }
 
-        return {}
+        return resMessage.notAuthorized
     }
 }
 

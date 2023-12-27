@@ -2,6 +2,7 @@ import { channelType } from "../TypeDefs/Channel";
 import { GraphQLInt, GraphQLList, GraphQLString } from "graphql";
 import { Channel } from "../../entities/Channel.entity";
 import { channelServices } from "../../services/channelServices";
+import { Permissions } from "../../interfaces.td";
 
 
 export const GET_SINGLE_CHANNEL = {
@@ -11,8 +12,12 @@ export const GET_SINGLE_CHANNEL = {
       id:{type:GraphQLInt}
     },
 
-     async resolve(parent:any ,args:Channel){
+     async resolve(parent:any ,args:Channel, context:Permissions){
+        if(context.isLoggedIn)
          return await channelServices.getChannel(args.id)
+
+
+         return {}
     } 
 }
 

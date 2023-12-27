@@ -4,6 +4,7 @@ import {userUtils} from '../../utils/userUtils'
 import { User} from "../../entities/User.entity"
 import { userType } from "../TypeDefs/User";
 import { Permissions } from "../../interfaces.td";
+import { resMessage } from "../../constants";
 
 
 
@@ -47,6 +48,6 @@ export const DELETE_USER = {
      }
 
 
-     return " you are not authorized"
+     return resMessage.notAuthorized
   }
 }

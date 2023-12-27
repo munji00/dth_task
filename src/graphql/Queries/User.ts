@@ -1,5 +1,5 @@
 import { userType} from "../TypeDefs/User";
-import { GraphQLInt, GraphQLList} from "graphql";
+import { GraphQLInt, GraphQLList, GraphQLString} from "graphql";
 import { User } from "../../entities/User.entity";
 import { userServices } from "../../services/userServices";
 import { Permissions } from "../../interfaces.td";
@@ -12,29 +12,33 @@ export const GET_SINGLE_USER = {
       id:{type:GraphQLInt}
     },
 
-     async resolve(parent:any ,args:User){
+     async resolve(parent:any ,args:User, context:Permissions){
+
+        if(context.isLoggedIn)
          return await userServices.getUserById(args.id)
+
+         return {}
     
     } 
 }
 
 
 export const GET_ALL_USER = {
-    type: new GraphQLList(userType),
+    type: new GraphQLList(userType) || GraphQLString,
 
     async resolve(parent:any , args:User, context:Permissions){
        
         console.log(context)
         if(context.isLoggedIn && context.role===1)
-        return await userServices.getUsers()
+          return await userServices.getUsers()
 
-        return []
+          return []
     }
 }
 
 
 export const USER_WITH_PLAN = {
-    type: new GraphQLList(userType),
+    type: userType,
 
     args:{
         id:{type:GraphQLInt}
@@ -44,6 +48,6 @@ export const USER_WITH_PLAN = {
         if(context.isLoggedIn && context.role===1)
         return await userServices.getUserwithPlans(args.id)
 
-        return []
+        return {}
     }
 }

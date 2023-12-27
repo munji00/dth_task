@@ -1,4 +1,4 @@
-import {GraphQLInt, GraphQLString, GraphQLList } from "graphql";
+import {GraphQLInt, GraphQLList } from "graphql";
 import { subscribeServices } from "../../services/subscriptionServices";
 import {User_Plan} from "../../entities/User_Plan.entity"
 import { planType } from "../TypeDefs/User_Plan";

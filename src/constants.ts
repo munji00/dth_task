@@ -20,3 +20,7 @@ export const routesPath = {
     DELETE:'/delete/:id',
     CREATE:'/create',
 }
+
+export const resMessage={
+    notAuthorized:"you are not authorized or you have not access"
+}

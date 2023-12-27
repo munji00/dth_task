@@ -3,6 +3,7 @@ import { packageServices } from "../../services/packageServices";
 import {Package} from "../../entities/Package.entity"
 import { packageType } from "../TypeDefs/Package";
 import { Permissions } from "../../interfaces.td";
+import { resMessage } from "../../constants";
 
 
 export const CREATE_PACKAGE = {
@@ -18,7 +19,7 @@ export const CREATE_PACKAGE = {
         if(context.isLoggedIn && context.role===2)
         return await packageServices.createPack(args)
 
-        return []
+        return {}
     }
 }
 
@@ -34,6 +35,6 @@ async resolve(parent:any , args:Package, context:Permissions){
         return "package deleted successfully"
     }
 
-    return " you are not authorized"
+    return resMessage.notAuthorized
 }
 }

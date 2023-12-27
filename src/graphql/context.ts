@@ -1,9 +1,10 @@
 import { userServices } from "../services/userServices";
+import { Request , NextFunction } from "express";
 import { userUtils } from "../utils/userUtils";
 import { Permissions } from "../interfaces.td";
 
 // context function
-export const contextObject = async (req: any): Promise<Permissions> => {
+export const contextObject = async (req:Request ): Promise<Permissions> => {
   const token = req.get("authorization")?.split(' ')[1] || '';
   const permissions: Permissions = {
     isLoggedIn: false,
@@ -20,8 +21,7 @@ export const contextObject = async (req: any): Promise<Permissions> => {
     }
   
   } catch (err) {
-    throw new Error('Authentication failed');
+    console.log(err);
   }
-  
   return permissions;
 };

@@ -3,6 +3,7 @@ import { channelServices } from "../../services/channelServices";
 import {Channel} from "../../entities/Channel.entity"
 import { channelType } from "../TypeDefs/Channel";
 import { Permissions } from "../../interfaces.td";
+import { resMessage } from "../../constants";
 
 
 
@@ -21,7 +22,7 @@ export const CREATE_CHANNEL = {
         if(context.isLoggedIn && context.role ===2)
         return await channelServices.createChannel(args)
 
-        return []
+        return {}
     }
 }
 
@@ -39,6 +40,6 @@ export const DELETE_CHANNEL = {
         return "channel deleted successfully"
        }
 
-       return " user not authorized"
+       return resMessage.notAuthorized
     }
 }
