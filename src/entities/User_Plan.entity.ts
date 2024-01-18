@@ -19,7 +19,7 @@ export class User_Plan{
   @ManyToOne(()=> User, (user)=> user.user_plan)
   user!:User;
 
-  @ManyToOne(()=> Package, (pkg)=> pkg.user_plan)
+  @ManyToOne(()=> Package, (pkg)=> pkg.user_plan, { onDelete: 'CASCADE' })
   package!:Package;
 
 }

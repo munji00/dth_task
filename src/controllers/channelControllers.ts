@@ -9,7 +9,6 @@ export const createChannel = async (req: Request, res: Response, next:NextFuncti
     const newChannel = await channelServices.createChannel(channelData);
     res.status(201).send({success:true , message:"New Channel Created Successfully",newChannel});
   } catch (error) {
-    //res.status(500).send({success:false, message: error});
     next(error);
   }
 }
@@ -22,7 +21,6 @@ export const getChannel = async(req:Request, res:Response, next:NextFunction):Pr
     const channelData = await channelServices.getChannel(+id);
     res.status(200).send({success:true, data:channelData})
   } catch (error) {
-    //res.status(500).send({success:false, message:"Internal Server Error"})
     next(error)
   }
 }
@@ -34,7 +32,6 @@ export const getAllChannels = async(req:Request, res:Response, next:NextFunction
     res.status(200).send({success:true ,data:channelsData})
   } catch (error) {
     console.log(error);
-    //res.status(500).send({success:false, message:"Internal Server Error"})
     next(error);
   }
 }
@@ -47,7 +44,6 @@ export const deleteChannel = async(req:Request, res:Response, next:NextFunction)
     res.status(200).send({success:true ,message:"channel deleted successfully"})
   } catch (error) {
     console.log(error);
-    //res.status(500).send({success:false, message:"Internal Server Error"})
     next(error);
   }
 }

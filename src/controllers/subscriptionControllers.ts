@@ -10,7 +10,6 @@ export const subscribePack = async (req: Request, res: Response, next:NextFuncti
     const newSubscription = await subscribeServices.subscribePack({st_date:new Date(), userId:user_id, packageId: +pack_id});
     res.status(201).send({success:true , message:"You subscribed new Pack",newSubscription});
   } catch (error) {
-    //res.status(500).send({success:false, message: error});
     next(error)
   }
 }
@@ -21,7 +20,6 @@ export const unsubscribePack = async (req: Request, res: Response, next:NextFunc
     await subscribeServices.deleteSubscription(+id);
     res.status(201).send({success:true , message:"subscription deleted"});
   } catch (error) {
-    //res.status(500).send({success:false, message: error});
     next(error)
   }
 }
@@ -34,7 +32,6 @@ export const getSubscription = async(req:Request, res:Response, next:NextFunctio
     const subscription = await subscribeServices.getSubscription(+id);
     res.status(200).send({success:true, data:subscription})
   } catch (error) {
-    //res.status(500).send({success:false, message:"Internal Server Error"})
     next(error)
   }
 }
@@ -46,7 +43,6 @@ export const getAllSubscription = async(req:Request, res:Response, next:NextFunc
     res.status(200).send({success:true ,data:allSubscription})
   } catch (error) {
     console.log(error);
-    //res.status(500).send({success:false, message:"Internal Server Error"})
     next(error)
   }
 }

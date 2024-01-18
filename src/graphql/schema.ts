@@ -28,6 +28,7 @@ const RootMutation = new GraphQLObjectType({
     name:"RootMutation",
     fields:{
      createUser:userMutations.CREATE_USER,
+     signinUser:userMutations.LOGIN_USER,
      deleteUser:userMutations.DELETE_USER,
      createPackage:packageMutations.CREATE_PACKAGE,
      deletePackage:packageMutations.DELETE_PACKAGE,
