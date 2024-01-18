@@ -1,5 +1,5 @@
 import swaggerUi from 'swagger-ui-express'
-import express from 'express';
+import express ,{Express}from 'express';
 import YAML from 'yamljs'
 import { AppDataSource } from './data-source';
 import { graphqlHTTP } from 'express-graphql';
@@ -14,7 +14,8 @@ import {contextObject} from './graphql/context'
 import { schema } from './graphql/schema';
 
 
-export const app = express();
+
+const app:Express = express();
 
 //application level middileware
 app.use(cors());
@@ -37,6 +38,7 @@ AppDataSource.initialize().then(()=> {
     console.log(error)
 })
 
+
 //global error handlers
 app.use(errorHandler)
 
@@ -55,4 +57,4 @@ app.use('/graphql', graphqlHTTP(async (req: any) => ({
   graphiql: true,
 })));
 
-
+export default app;

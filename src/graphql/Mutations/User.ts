@@ -2,14 +2,14 @@ import { GraphQLBoolean, GraphQLInt, GraphQLString } from "graphql";
 import { userServices } from "../../services/userServices";
 import {userUtils} from '../../utils/userUtils'
 import { User} from "../../entities/User.entity"
-import { userType } from "../TypeDefs/User";
 import { Permissions } from "../../interfaces.td";
 import { resMessage } from "../../constants";
+import { userCommonType } from "../TypeDefs/User";
 
 
 
 export const CREATE_USER = {
-    type:GraphQLString,
+    type:userCommonType,
 
     args:{
         username:{type:GraphQLString},
@@ -24,15 +24,37 @@ export const CREATE_USER = {
       const { username, name,  email, password, role, active} = args;
       try {
         const isExits = await userServices.getUserByEmail(args.email)
-        if(isExits) return "user already exist"
+        if(isExits) return null
         const hashed_password=  await userUtils.hashPassword(password)
-        userServices.registerUser({username, name, email, password:hashed_password,role, active })
+        return  await userServices.registerUser({username, name, email, password:hashed_password,role, active })
       } catch (error) {
-        return "error in creating user"
+        return null
       }
-      return "user created succesfully";
     }
 }
+
+export const LOGIN_USER = {
+    type:GraphQLString,
+    args:{
+        email:{type:GraphQLString},
+        password:{type:GraphQLString}
+    },
+
+    async resolve(parents:any ,args:User){
+     try {
+       const isExits = await userServices.getUserByEmail(args.email);
+       if(!isExits) 
+          return "User Not Found";
+       if(! await userUtils.verifyPassword(args.password, isExits.password)) 
+          return "password or email is incorrect"
+
+      return await  userUtils.genrateToken({email:args.email, password:args.password}) as string
+     } catch (error:any) {
+      return error.message
+     }
+  }
+}
+
 
 export const DELETE_USER = {
     type:GraphQLString,
@@ -46,8 +68,6 @@ export const DELETE_USER = {
        await userServices.deleteUser(args.id)
        return "user deleted successfully"
      }
-
-
      return resMessage.notAuthorized
   }
 }

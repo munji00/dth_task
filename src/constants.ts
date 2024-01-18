@@ -1,11 +1,11 @@
 import env from 'dotenv';
 env.config()
-
 export const credentials = {
     PORT:process.env.PORT || 6008,
     DB_USERNAME:process.env.DB_USERNAME,
     DB_PASSWORD:process.env.DB_PASSWORD,
-    DB_NAME:process.env.DB_NAME,
+    DB_NAME:process.env.NODE_ENV === 'development' ? process.env.DB_NAME : process.env.TEST_DB_NAME,
+    DB_SYNCHRONIZE:process.env.NODE_ENV ==='development',
     DB_TYPE: process.env.DB_TYPE,
     HOST : process.env.HOST
 }
